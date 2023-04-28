@@ -3,8 +3,8 @@ Camera calibration script which outputs focal lengths along x and y axis, along 
 
 # Usage
 Install requirments.txt by:  
--cd'ing into the camera-calibration folder. 
--entering: pip install -r requirements.txt. 
+-cd'ing into the camera-calibration folder  
+-entering: pip install -r requirements.txt  
 
 ## Using checkerboard.jpeg  
 Print out the file  
