@@ -2,7 +2,9 @@
 Camera calibration script which outputs focal lengths along x and y axis, along with coordinates of a principle point (outputs intristic parameters of a camera).  
 
 # Usage
-Install requirments.txt  
+Install requirments.txt by:  
+-cd'ing into the camera-calibration folder. 
+-entering: pip install -r requirements.txt. 
 
 ## Using checkerboard.jpeg  
 Print out the file  
