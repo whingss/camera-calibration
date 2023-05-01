@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 
+# change to number of calibration images entered, try to have between 10-15
 NUM_CALIBRATION_IMAGES = 11
 
 # number of points on checkerboard (in checkerboard.jpeg)
@@ -15,7 +16,7 @@ obj_points = []
 img_points = []
 
 # Get a list of image filenames
-img_filenames = [f"images/img{num}.jpg" for num in range(1, NUM_CALIBRATION_IMAGES)]
+img_filenames = [f"calibrate-camera/images/img{num}.jpg" for num in range(1, NUM_CALIBRATION_IMAGES)]
 
 # Prepare the object points (0,0,0), (1,0,0), ..., (8,5,0)
 objp = np.zeros((CHECKERBOARD_SIZE[0]*CHECKERBOARD_SIZE[1], 3), np.float32)
@@ -29,7 +30,7 @@ for img_filename in img_filenames:
     # Find the corners in the checkerboard pattern
     ret, corners = cv2.findChessboardCorners(gray, CHECKERBOARD_SIZE, None)
 
-    if ret == True:
+    if ret:
         obj_points.append(objp)
         corners2 = cv2.cornerSubPix(gray, corners, (11,11), (-1,-1), CRITERIA)
         img_points.append(corners2)
@@ -39,7 +40,7 @@ ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(obj_points, img_points, gray.
 
 # Print the intrinsic parameters
 print(f"Distortion coefficients: {dist}")
-print("fx: ", mtx[0][0])
-print("fy: ", mtx[1][1])
-print("cx: ", mtx[0][2])
-print("cy: ", mtx[1][2])
+print(f"fx: {mtx[0][0]}")
+print(f"fy: {mtx[1][1]}")
+print(f"cx: {mtx[0][2]}")
+print(f"cy: {mtx[1][2]}")
